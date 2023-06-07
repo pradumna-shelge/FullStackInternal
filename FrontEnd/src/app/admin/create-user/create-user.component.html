@@ -1,0 +1,58 @@
+<h2>Add User</h2>
+<form [formGroup]="userForm" >
+  <div>
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" formControlName="firstName" required>
+  </div>
+  <div>
+    <label for="middleName">Middle Name:</label>
+    <input type="text" id="middleName" formControlName="middleName">
+  </div>
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" formControlName="lastName" required>
+  </div>
+  <div>
+    <label for="photoURL">Photo URL:</label>
+    <input (change)="getUrl($event)" type="file" id="photoURL" formControlName="photoURL">
+  </div>
+  <div>
+    <label for="flatNumber">Flat Number:</label>
+    <input type="text" id="flatNumber" formControlName="flatNumber">
+  </div>
+  <div>
+    <label for="addressLine">Address Line:</label>
+    <input type="text" id="addressLine" formControlName="addressLine">
+  </div>
+  <div>
+    <label for="stateId">State:</label>
+    <select (change)="chagestate()" id="stateId" formControlName="stateId" required>
+      <option value="">-- Select State --</option>
+      <!-- Populate the options with state data -->
+      <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="cityId">City:</label>
+    <select id="cityId" formControlName="cityId" required>
+      <option value="">-- Select City --</option>
+      <!-- Populate the options with city data based on the selected state -->
+      <option *ngFor="let city of cityData " [value]="city.id">{{ city.name }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="pinCode">Pin Code:</label>
+    <input type="text" id="pinCode" formControlName="pinCode" required>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email" required>
+  </div>
+  <div>
+    <label for="initiationDate">Initiation Date:</label>
+    <input type="date" id="initiationDate" formControlName="initiationDate" required>
+  </div>
+  <div>
+    <button type="submit" (click)="submit()">Submit</button>
+  </div>
+</form>
