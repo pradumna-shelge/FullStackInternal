@@ -3,14 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { DonationComponent } from './donation/donation.component';
 
 const routes: Routes = [
 
   { path: '', component: NavbarComponent,
 children:[
-  { path: '', component: HomepageComponent },
+  { path: 'home', component: HomepageComponent },
   { path: 'create', component: CreateUserComponent },
-  // { path: '', pathMatch: 'full', redirectTo: '/admin/home' },
+  { path: 'Donations', component: DonationComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/admin/home' },
 
 ]
 },

@@ -22,6 +22,8 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 builder.Services.AddDbContext<DonationSystemContext>();
 builder.Services.AddScoped<Icity, cityes>();
 builder.Services.AddScoped<IuserClass, UserClass>();
+builder.Services.AddScoped<IuserRole, userRole>();
+builder.Services.AddScoped<IPayment, Payment>();
 
 var tak = builder.Configuration.GetSection("jwt");
 

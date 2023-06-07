@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Image, city } from 'src/app/Models/Default';
+import { Image, UserData, city } from 'src/app/Models/Default';
 
 @Component({
   selector: 'app-create-user',
@@ -38,24 +38,27 @@ export class CreateUserComponent {
 
   myfile!:File
   url=''
-  getUrl(file:any){
-    this.myfile = file.target.files[0];
-
-    const formdata = new FormData();
-    formdata.append('file',this.myfile);
-
-    this.http.post<Image>('https://localhost:7284/api/ServiceApi/ImageUrl',formdata).subscribe(d=>{
-      this.url = d.url
-      console.log(this.url);
-      
-    })
-
-  }
+    urlmake(file:any){
+  
+      this.myfile = file.target.files[0];
+  
+      const formdata = new FormData();
+      formdata.append('file',this.myfile);
+  
+      this.http.post<Image>("https://localhost:7284/api/cityies/ImageUrl",formdata).subscribe((data:Image) =>{
+          this.url = data.url;
+          console.log(this.url);
+          
+      })
+    }
+  
 
   chagestate(){
 
     var id = this.userForm.get('stateId')?.value;
+  
     console.log(id);
+  
     
     this.http.get<city[]>('https://localhost:7284/api/cityies/'+ Number(id)).subscribe(d=>{
       this.cityData = d;
@@ -64,9 +67,22 @@ export class CreateUserComponent {
 
 
   submit(){
-
-  this.http.post("https://localhost:7284/api/userData",this.userForm.value).subscribe(d=>{
-    console.log(  d);
+    var ob:UserData = {
+      firstName: this.userForm.get('firstName')?.value,
+      middleName: this.userForm.get('middleName')?.value,
+      lastName: this.userForm.get('lastName')?.value,
+      cityId: this.userForm.get('cityId')?.value,
+      stateId: this.userForm.get('stateId')?.value,
+      addressLine:this.userForm.get('addressLine')?.value,
+      initiationDate:this.userForm.get('initiationDate')?.value,
+      pinCode:this.userForm.get('pinCode')?.value,
+      email:this.userForm.get('email')?.value,
+      userId:'',
+      flatNumber:this.userForm.get('flatNumber')?.value,
+      photoURL:this.url
+    }
+  this.http.post("https://localhost:7284/api/userData",ob).subscribe(d=>{
+    console.log(d);
   })
 
 

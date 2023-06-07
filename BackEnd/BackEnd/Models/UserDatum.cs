@@ -33,7 +33,11 @@ public partial class UserDatum
 
     public int? RoleId { get; set; }
 
+    public string? Lastotp { get; set; }
+
     public virtual City? City { get; set; }
+
+    public virtual ICollection<Donation> Donations { get; set; } = new List<Donation>();
 
     public virtual Role? Role { get; set; }
 

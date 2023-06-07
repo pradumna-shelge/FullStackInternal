@@ -6,13 +6,15 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { DonationComponent } from './donation/donation.component';
 
 
 @NgModule({
   declarations: [
     HomepageComponent,
     NavbarComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    DonationComponent
   ],
   imports: [
     CommonModule,

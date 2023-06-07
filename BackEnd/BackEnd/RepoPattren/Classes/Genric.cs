@@ -34,5 +34,11 @@ namespace BackEnd.RepoPattren.Classes
         {
             return  _dbset;
         }
+
+        public void Update(T item, string id)
+        {
+            
+            throw new NotImplementedException();
+        }
     }
 }

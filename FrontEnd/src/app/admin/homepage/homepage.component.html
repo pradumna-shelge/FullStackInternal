@@ -1,10 +1,25 @@
 <div class="container">
     <table class="table">
-     
+     <tr>
+      <th>
+        UserId
+      </th>
+      <th>
+        FullName
+      </th>
+      <th>
+        Email
+      </th>
+      <th>
+        Control
+      </th>
+     </tr>
   
       <tr *ngFor="let item of userData">
 
         <td>{{item.firstName+" "+item.lastName}}</td>
+        <td>{{item.userId}}</td>
+        <td>{{item.email}}</td>
         <td (click)="delete(item.userId)"><button type="button" class="btn btn-outline-danger">delete</button>
         </td>
       </tr>

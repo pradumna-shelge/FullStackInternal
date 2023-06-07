@@ -17,12 +17,14 @@ namespace BackEnd.Controllers
     {
         private readonly IuserClass _user;
         private readonly IConfiguration _config;
+        private readonly IuserRole _role;
 
         public UserLogin(IuserClass iuser,IConfiguration 
-            configuration)
+            configuration,IuserRole role)
         {
                 _user = iuser;
             _config = configuration;
+            _role = role;
         }
 
 
@@ -40,7 +42,7 @@ namespace BackEnd.Controllers
             {
                 return NotFound();
             }
-            string Role = "Admin";
+            string Role = _role.Get().FirstOrDefault(x=>x.RoleId == user.RoleId).RoleName;
             string name = user.UserId;
             string token = createToken(Role,name);
 

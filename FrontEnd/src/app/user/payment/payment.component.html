@@ -1,3 +1,55 @@
 
 
 
+<div class="w-50 m-auto border p-2 mt-5">
+    <div class="mb-3">
+        <select #year class="form-select" aria-label="Default select example">
+            <option selected>Select year</option>
+          <ng-container *ngFor="let item of number">
+            <option [value]="date+item">{{date+item}}</option>
+          </ng-container>
+          </select>
+    </div>
+    <div class="mb-3">
+        <select #month class="form-select" aria-label="Default select example">
+            <option selected>Select Month</option>
+          <ng-container *ngFor="let item of number">
+            <option [value]="item+1">{{months[item]}}</option>
+          </ng-container>
+          </select>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Amount</label>
+      <input type="number" class="form-control" #pay min="100">
+    </div>
+  
+    <button   class="btn btn-primary" (click)="sendOtp()" data-bs-toggle="modal" data-bs-target="#modalId">Submit</button>
+</div>
+
+
+
+
+
+<div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">Enter Otp</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" #otp>
+                <button  class="btn btn-primary" (click)="payment(otp.value,year.value,month.value,pay.value)" data-bs-dismiss="modal">Submit</button>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+
+</script>

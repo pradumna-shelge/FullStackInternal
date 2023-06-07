@@ -22,8 +22,9 @@ export class SignInPageComponent {
     if(Role === 'Admin'){
           this.router.navigate(['/admin']);
     }
-    else if(Role == 'Devoti'){
-      this.router.navigate(['/devoti']);
+    else if(Role == 'Devotee'){
+      localStorage.setItem('userid',username)
+      this.router.navigate(['/devoti'] );
     }
 
   }

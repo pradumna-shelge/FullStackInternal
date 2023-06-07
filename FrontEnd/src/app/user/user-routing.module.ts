@@ -10,9 +10,10 @@ const routes: Routes = [
   { path: '', component: NavbarComponent,
 
 children:[
-  { path: '', component: HomepageComponent },
+  { path: 'home', component: HomepageComponent },
   { path: 'pay', component: PaymentComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/devoti/home' },
 ]
 },
 

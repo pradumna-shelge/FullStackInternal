@@ -10,6 +10,8 @@ namespace BackEnd.RepoPattren.interfaces
 
         void Delete(T ob);
 
+        void Update(T item,string id);
+
 
 
     }

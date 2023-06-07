@@ -1,8 +1,11 @@
 ﻿using BackEnd.DTO;
 using BackEnd.Models;
 using BackEnd.RepoPattren.interfaces;
+using BackEnd.Services;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit;
 
 namespace BackEnd.Controllers
 {
@@ -40,21 +43,23 @@ namespace BackEnd.Controllers
                 AddressLine = ob.AddressLine,
                 RoleId = 2,
                 InitiationDate = ob.InitiationDate,
-
+                PhotoUrl = ob.PhotoURL
 
             };
 
 
             _user.Add(userData);
 
-
-            //senMail();
+          
+            string body = $"username: {userData.UserId} \n password:{userData.UserPassword}";
+            string sub = "Welcome ";
+            EmailServices.sendEmailUserCre(ob.Email,body,sub);
 
             return Ok(userData);
 
         }
 
-
+       
 
         [HttpGet]
 
@@ -77,6 +82,7 @@ namespace BackEnd.Controllers
                 PinCode = ob.PinCode,
                 AddressLine = ob.AddressLine,
                 InitiationDate = ob.InitiationDate,
+                
             };
 
 
@@ -118,6 +124,39 @@ namespace BackEnd.Controllers
             string dynamicId = $"{year}-{firstTwoLettersOfFirstName}{firstTwoLettersOfLastName}-{month}";
 
             return dynamicId;
+        }
+
+
+
+        [HttpGet("{id}")]
+
+        public ActionResult Get(string id)
+        {
+
+            var ob  = _user.Get().FirstOrDefault(_x => _x.UserId == id);
+            if(ob == null)
+            {
+                return BadRequest();
+            }
+
+            var data = new
+            {
+                UserId = ob.UserId,
+                FirstName = ob.FirstName,
+                LastName = ob.LastName,
+                Email = ob.Email,
+                MiddleName = ob.MiddleName,
+                FlatNumber = ob.FlatNumber,
+                StateId = Convert.ToInt32(ob.StateId),
+                CityId = ob.CityId,
+                PinCode = ob.PinCode,
+                AddressLine = ob.AddressLine,
+                InitiationDate = ob.InitiationDate,
+            };
+
+
+            return Ok(data);
+
         }
 
     }

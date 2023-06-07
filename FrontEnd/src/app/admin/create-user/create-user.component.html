@@ -1,5 +1,5 @@
-<h2>Add User</h2>
-<form [formGroup]="userForm" >
+
+<form class="w-50 m-auto" [formGroup]="userForm" >
   <div>
     <label for="firstName">First Name:</label>
     <input type="text" id="firstName" formControlName="firstName" required>
@@ -13,8 +13,8 @@
     <input type="text" id="lastName" formControlName="lastName" required>
   </div>
   <div>
-    <label for="photoURL">Photo URL:</label>
-    <input (change)="getUrl($event)" type="file" id="photoURL" formControlName="photoURL">
+    <label for="photoURL">Photo </label>
+    <input (change)="urlmake($event)" type="file" id="photoURL" formControlName="photoURL">
   </div>
   <div>
     <label for="flatNumber">Flat Number:</label>
@@ -28,7 +28,6 @@
     <label for="stateId">State:</label>
     <select (change)="chagestate()" id="stateId" formControlName="stateId" required>
       <option value="">-- Select State --</option>
-      <!-- Populate the options with state data -->
       <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
     </select>
   </div>
@@ -36,7 +35,6 @@
     <label for="cityId">City:</label>
     <select id="cityId" formControlName="cityId" required>
       <option value="">-- Select City --</option>
-      <!-- Populate the options with city data based on the selected state -->
       <option *ngFor="let city of cityData " [value]="city.id">{{ city.name }}</option>
     </select>
   </div>
