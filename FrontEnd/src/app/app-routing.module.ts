@@ -12,7 +12,10 @@ const routes: Routes = [
   loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
 },
 
-
+{
+  path: 'devoti', 
+  loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+},
 ];
 
 @NgModule({

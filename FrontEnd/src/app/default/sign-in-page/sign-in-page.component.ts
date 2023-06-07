@@ -23,7 +23,7 @@ export class SignInPageComponent {
           this.router.navigate(['/admin']);
     }
     else if(Role == 'Devoti'){
-      this.router.navigate(['/']);
+      this.router.navigate(['/devoti']);
     }
 
   }
